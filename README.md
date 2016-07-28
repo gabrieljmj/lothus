@@ -6,7 +6,7 @@
 ## Installation
 Include Lothus file
 ```html
-<script src="lothus.min.js"></script>
+<script src="lothus.bundled.min.js"></script>
 ```
 
 ## Usage
@@ -19,11 +19,11 @@ See the examples below:
   <page
     name="hello"
     route="hello/:name"
-  >
+    default>
     <h1>Hello, { _params.name }</h1>
   </page>
 
-  <script src="lothus.min.js"></script>
+  <script src="lothus.bundled.min.js"></script>
 
   <script>
     window.onload = () => {
