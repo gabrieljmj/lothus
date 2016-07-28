@@ -2,9 +2,6 @@ window.onload = () => {
   // Creates Lothus app
   const app = new Lothus();
 
-  // Sorts alphabeticallycities
-  cities.sort(sortAlphabetically);
-
   // Registers the colletions as data providers
   app.provider('cities', {citiesList: cities});
 
