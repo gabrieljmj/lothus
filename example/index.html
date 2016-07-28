@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Lothus example</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="http://getbootstrap.com/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <nav>
+      <ul>
+        <li>
+          <a href="#">Home</a>
+        </li>
+        <li>|</li>
+        <li>
+          <a href="#cities">Europa Cities</a>
+        </li>
+      </ul>
+    </nav>
+
+    <page
+      name="home"
+      route="home"
+      title="Lothus example"
+      default>
+      <h1 align="center">This is an example of Lothus application</h1>
+    </page>
+
+    <page
+      name="cities"
+      route="cities"
+      title="Cities Search"
+      data-provider="cities"
+      onload="onCities">
+      <div>
+        <input type="text" id="cities-search" placeholder="Search for cities" class="form-control">
+      </div>
+
+      <table class="table" id="cities-list">
+        <caption>Click in the name to show the map</caption>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+          </tr>
+        </thead>
+        <tbody rv-each-city="citiesList">
+          <tr>
+            <td><a class="city-name" rv-cityhref="city.name">{ city.name }</a></td>
+            <td>{ city.lat }</td>
+            <td>{ city.lon }</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div id="no-cities-found" style="display: none">
+        <h3 align="center">No cities found</h3>
+      </div>
+    </page>
+
+    <page
+      name="city"
+      route="city/:name"
+      title="City"
+      data-provider="city"
+      onload="onCity">
+      <div id="map">
+        <div class="city-name">
+          <h1>{ _params.name | decode_uri }</h1>
+        </div>
+
+        <div id="map-container">
+          <iframe
+            width="100%"
+            height="450"
+            frameborder="0" style="border:0"
+            id="map-iframe"
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <div id="city-not-found-on-list">
+        <h3 align="center">City not found in list</h3>
+      </div>
+    </page>
+  </div>
+  
+  <script src="assets/js/lothus.js"></script>
+  <script src="assets/js/cities.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
